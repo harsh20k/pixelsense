@@ -141,8 +141,7 @@ Thumbs.db
 *~
 
 # --- Obsidian (high-churn UI state) ---
-notes/.obsidian/workspace.json
-notes/.obsidian/workspace-mobile.json
+notes/
 
 # --- Misc ---
 *.bak
