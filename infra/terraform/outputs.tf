@@ -22,3 +22,8 @@ output "dvc_remote_url" {
   description = "DVC remote URL — pass to: dvc remote add -d s3remote <value>"
   value       = "s3://${aws_s3_bucket.data.bucket}/dvc-store"
 }
+
+output "sagemaker_execution_role_arn" {
+  description = "IAM Role ARN to pass to SageMaker jobs (--role-arn)"
+  value       = aws_iam_role.sagemaker_execution.arn
+}
