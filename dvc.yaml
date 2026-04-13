@@ -1,0 +1,18 @@
+stages:
+  source_pixel_art:
+    cmd: python scripts/source_pixel_art.py
+    deps:
+      - scripts/source_pixel_art.py
+    outs:
+      - data/pixel_art:
+          cache: true
+          persist: true
+
+  source_photorealistic:
+    cmd: python scripts/source_photorealistic.py
+    deps:
+      - scripts/source_photorealistic.py
+    outs:
+      - data/photorealistic:
+          cache: true
+          persist: true

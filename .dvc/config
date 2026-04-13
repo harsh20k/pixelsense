@@ -1,0 +1,7 @@
+[core]
+    remote = s3remote
+[cache]
+    dir = /Users/harsh/Artifacts/pixelsense/.dvc/cache
+['remote "s3remote"']
+    url = s3://pixelsense-data/dvc-store
+    region = us-east-1

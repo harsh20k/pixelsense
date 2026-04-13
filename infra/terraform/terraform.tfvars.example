@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars (git-ignored) and fill in values.
+# terraform.tfvars is never committed — secrets stay local / in CI env vars.
+
+aws_region                  = "us-east-1"
+project                     = "pixelsense"
+environment                 = "dev"
+data_lifecycle_glacier_days = 90

@@ -143,6 +143,10 @@ Thumbs.db
 # --- Obsidian (high-churn UI state) ---
 notes/
 
+# --- Great Expectations ---
+validation/gx/uncommitted/
+validation/gx/.ge_store_backend_id
+
 # --- Misc ---
 *.bak
 *.tmp
