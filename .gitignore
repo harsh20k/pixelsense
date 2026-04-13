@@ -5,6 +5,11 @@
 *.pem
 .aws/credentials
 
+# Cursor — ignore IDE plans/state; keep team rules versioned
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
+
 # --- Python ---
 __pycache__/
 *.py[cod]

@@ -1,0 +1,28 @@
+schema: '2.0'
+stages:
+  source_pixel_art:
+    cmd: python scripts/source_pixel_art.py
+    deps:
+    - path: scripts/source_pixel_art.py
+      hash: md5
+      md5: 64f3360a53f74efefc66c391dc0736e4
+      size: 8660
+    outs:
+    - path: data/pixel_art
+      hash: md5
+      md5: 5a0c8783f582fa84b7c4e62b8a1ff945.dir
+      size: 45207
+      nfiles: 12
+  source_photorealistic:
+    cmd: python scripts/source_photorealistic.py
+    deps:
+    - path: scripts/source_photorealistic.py
+      hash: md5
+      md5: 0bc4c12f08f4e8bba8c491906277376b
+      size: 8093
+    outs:
+    - path: data/photorealistic
+      hash: md5
+      md5: 9734899f6e7c33102a873c30c3f6cda9.dir
+      size: 1918808
+      nfiles: 12

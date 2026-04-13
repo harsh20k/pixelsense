@@ -44,6 +44,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "data" {
     id     = "archive-noncurrent-versions"
     status = "Enabled"
 
+    filter {}
+
     noncurrent_version_transition {
       noncurrent_days = var.data_lifecycle_glacier_days
       storage_class   = "GLACIER"
@@ -95,6 +97,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "artifacts" {
   rule {
     id     = "archive-noncurrent-versions"
     status = "Enabled"
+
+    filter {}
 
     noncurrent_version_transition {
       noncurrent_days = var.data_lifecycle_glacier_days
