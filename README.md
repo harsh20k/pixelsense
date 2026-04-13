@@ -8,17 +8,25 @@ PixelSense is an ML system that translates images in both directions between pix
 
 ## Stack
 
-| Area | Choice |
-|------|--------|
-| **Model** | CycleGAN (PyTorch), selected via comparison with Pix2Pix and Stable Diffusion img2img |
-| **Evaluation** | FID, SSIM, inference latency benchmarks |
-| **Training** | AWS SageMaker (`ml.g4dn.xlarge`) |
-| **MLOps** | SageMaker Pipelines, MLflow, SageMaker Model Monitor |
-| **Data** | DVC + versioned S3 buckets |
-| **Infrastructure** | Terraform |
-| **Application** | React frontend + FastAPI backend on EC2 |
-| **CI/CD** | GitHub Actions |
-| **Edge** | ONNX + CoreML (iOS / Apple Silicon) · TensorRT (NVIDIA Jetson) |
+
+| Area               | Choice                                                                                                              |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| **Model**          | CycleGAN (PyTorch) with ImageNet-pretrained ResNet backbone; evaluated against Pix2Pix and Stable Diffusion img2img |
+| **Evaluation**     | FID, SSIM, inference latency benchmarks                                                                             |
+| **Training**       | AWS SageMaker (`ml.g4dn.xlarge`)                                                                                    |
+| **MLOps**          | SageMaker Pipelines, MLflow, SageMaker Model Monitor                                                                |
+| **Data**           | DVC + versioned S3 buckets                                                                                          |
+| **Infrastructure** | Terraform                                                                                                           |
+| **Application**    | React frontend + FastAPI backend on EC2                                                                             |
+| **CI/CD**          | GitHub Actions                                                                                                      |
+| **Edge**           | ONNX + CoreML (iOS / Apple Silicon) · TensorRT (NVIDIA Jetson)                                                      |
+
+
+## Model strategy
+
+CycleGAN is trained for unpaired pixel art ↔ photorealistic translation. Rather than initialising from random weights, the generators use an ImageNet-pretrained ResNet encoder — giving the model a strong foundation in low-level visual features (edges, textures) and faster convergence on the ~500-image-per-domain dataset. Only the task-specific heads and decoder layers are trained from scratch.
+
+The final model is selected by evaluating CycleGAN against Pix2Pix and Stable Diffusion img2img using FID score, SSIM, and inference latency. This makes the comparison meaningful: it pits a transfer-learning approach against a fully pretrained generative model and a paired-data baseline.
 
 ## Project tracking
 
