@@ -1,4 +1,12 @@
 # ── IAM Role: SageMaker Execution ─────────────────────────────────────────────
+# SDK uploads processing/training scripts to the default bucket:
+#   sagemaker-<region>-<account-id>
+
+data "aws_caller_identity" "current" {}
+
+locals {
+  sagemaker_default_bucket = "sagemaker-${var.aws_region}-${data.aws_caller_identity.current.account_id}"
+}
 
 data "aws_iam_policy_document" "sagemaker_assume_role" {
   statement {
@@ -30,6 +38,20 @@ data "aws_iam_policy_document" "sagemaker_permissions" {
       "${aws_s3_bucket.data.arn}/*",
       aws_s3_bucket.artifacts.arn,
       "${aws_s3_bucket.artifacts.arn}/*"
+    ]
+  }
+
+  # Default SageMaker bucket (SDK uploads entry-point code here)
+  statement {
+    actions = [
+      "s3:GetObject",
+      "s3:PutObject",
+      "s3:DeleteObject",
+      "s3:ListBucket"
+    ]
+    resources = [
+      "arn:aws:s3:::${local.sagemaker_default_bucket}",
+      "arn:aws:s3:::${local.sagemaker_default_bucket}/*"
     ]
   }
 
