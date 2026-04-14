@@ -7,7 +7,7 @@ tqdm>=4.67.3
 dvc[s3]>=3.0
 
 # ML infrastructure
-boto3>=1.34
+boto3==1.35.36
 sagemaker>=2.200
 numpy>=1.26
 scikit-learn>=1.4
